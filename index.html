@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Event Calendar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Link to external styles.css -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Link to a cool Google Font for the title -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navbar with search and filter options -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sports Events</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#addEventModal">Add
+                            Event</a>
+                    </li>
+                </ul>
+
+                <!-- Form with search, sport filter, and date filter -->
+                <form id="filterForm" class="d-flex" role="search">
+                    <!-- Search input -->
+                    <input id="searchInput" class="form-control me-2" type="search" placeholder="Search"
+                        aria-label="Search">
+
+                    <!-- Sport Filter -->
+                    <select id="sportFilter" class="form-select me-2" onchange="applyFilters()">
+                        <option value="">Select Sport</option>
+                        <option value="Football">Football</option>
+                        <option value="Ice Hockey">Ice Hockey</option>
+                        <option value="Basketball">Basketball</option>
+                    </select>
+
+                    <!-- Date Filter -->
+                    <input id="dateFilter" type="date" class="form-control me-2" onchange="applyFilters()">
+
+                    <!-- Submit Button (optional) -->
+                    <button class="btn btn-outline-success" type="button" onclick="applyFilters()">Filter</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Video Background with Overlay and Title -->
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="media/nogomet_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+        <div class="title">Sports Calendar</div>
+    </div>
+
+    <!-- Display List of Events Here -->
+    <div class="container mt-4">
+        <h2>Upcoming Events</h2>
+        <div class="row" id="events-container">
+            <!-- Events will be displayed dynamically here -->
+        </div>
+    </div>
+
+    <!-- Modal for Add Event Form -->
+    <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="add_event.php" method="POST">
+                        <!-- Form content here -->
+                        <button type="submit" class="btn btn-primary">Add Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to apply filters (search, sport, date)
+        function applyFilters() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const sportFilter = document.getElementById('sportFilter').value;
+            const dateFilter = document.getElementById('dateFilter').value;
+
+            // Build the query string based on the selected filters
+            let query = `search=${searchQuery}&sport=${sportFilter}&date=${dateFilter}`;
+
+            // Fetch filtered events (the PHP endpoint needs to handle these parameters)
+            fetch(`get_events.php?${query}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('events-container').innerHTML = data;
+                });
+        }
+
+        // Call applyFilters on page load to show all events
+        window.onload = applyFilters;
+    </script>
+
+</body>
+
+</html>
