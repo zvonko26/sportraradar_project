@@ -16,15 +16,20 @@ body {
 }
 
 .navbar-nav .nav-link {
-    color: rgb(27, 192, 54);
+    color: black;
+    /* Black text for links */
+    transition: color 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover {
     color: #ffc107;
+    /* Orange color on hover */
 }
 
+/* Navbar Active Link */
 .navbar-nav .nav-item.active .nav-link {
     color: #ffc107;
+    /* Orange color for active link */
 }
 
 /* Navbar Form Styling */
@@ -43,15 +48,16 @@ body {
 }
 
 /* Video Background Styling */
-.video-background {
+header .video-background {
     position: relative;
     width: 100%;
-    height: 100vh;
-    /* Full height of the screen */
+    height: 40vh;
+    /* Adjusted height for the video */
     overflow: hidden;
+    margin-bottom: 20px;
 }
 
-.video-background video {
+video {
     position: absolute;
     top: 0;
     left: 50%;
@@ -59,19 +65,22 @@ body {
     min-width: 100%;
     min-height: 100%;
     object-fit: cover;
-    /* Ensures the video covers the full screen */
+    z-index: -1;
+    /* Keeps the video behind the content */
 }
 
+/* Overlay Styling */
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
+/* Title Styling */
 .title {
     position: absolute;
     top: 50%;
@@ -80,7 +89,6 @@ body {
     color: white;
     font-family: 'Pacifico', cursive;
     font-size: 4rem;
-    /* Big font for the title */
     text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
 }
 
@@ -137,5 +145,10 @@ body {
     #dateFilter {
         width: 100%;
         margin: 5px 0;
+    }
+
+    .title {
+        font-size: 3rem;
+        /* Adjust title size on smaller screens */
     }
 }
