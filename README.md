@@ -24,7 +24,7 @@ Follow these steps to get a local copy up and running:
 ### Prerequisites
 
 1. Install a local server environment like **XAMPP** or **MAMP** to run PHP.
-2. Set up a MySQL database for storing event data.
+2. Set up a **MySQL database** for storing event data (details below).
 
 ### Installation
 

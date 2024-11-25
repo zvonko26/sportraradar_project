@@ -1,63 +1,23 @@
-/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #f0f2f5;
+    color: #333;
+    position: relative;
+    overflow-x: hidden;
+
 }
 
-/* Navbar Styling */
-.navbar {
-    background-color: #343a40;
-}
 
-.navbar-brand {
-    color: white;
-}
-
-.navbar-nav .nav-link {
-    color: black;
-    /* Black text for links */
-    transition: color 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover {
-    color: #ffc107;
-    /* Orange color on hover */
-}
-
-/* Navbar Active Link */
-.navbar-nav .nav-item.active .nav-link {
-    color: #ffc107;
-    /* Orange color for active link */
-}
-
-/* Navbar Form Styling */
-.navbar .form-inline {
-    display: flex;
-    align-items: center;
-}
-
-.form-control {
-    margin-right: 10px;
-}
-
-.form-select,
-#dateFilter {
-    margin-right: 10px;
-}
-
-/* Video Background Styling */
-header .video-background {
+.video-background {
     position: relative;
     width: 100%;
-    height: 40vh;
-    /* Adjusted height for the video */
+    height: 100vh;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
-video {
+.video-background video {
     position: absolute;
     top: 0;
     left: 50%;
@@ -66,47 +26,70 @@ video {
     min-height: 100%;
     object-fit: cover;
     z-index: -1;
-    /* Keeps the video behind the content */
+    /* Keep video in the background */
 }
 
-/* Overlay Styling */
+
 .overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
-/* Title Styling */
-.title {
+
+.header-text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
-    font-family: 'Pacifico', cursive;
-    font-size: 4rem;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: #fff;
 }
 
-/* Container and Event Display Styling */
-.container {
-    padding-top: 20px;
+.header-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }
 
-#events-container {
-    display: flex;
-    flex-wrap: wrap;
+.header-text p {
+    font-size: 1.25rem;
+    font-weight: lighter;
 }
+
+
+.navbar {
+    background-color: #343a40;
+    padding: 1rem;
+}
+
+
+
+
+#sortFilter,
+#sportFilter {
+    max-width: 250px;
+    margin-right: 20px;
+}
+
+#sortFilter,
+#sportFilter {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+}
+
 
 .card {
-    margin: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
     transition: transform 0.3s ease;
+    z-index: 1;
 }
 
 .card:hover {
@@ -114,41 +97,136 @@ video {
 }
 
 .card-body {
+    padding: 20px;
     text-align: center;
 }
 
-/* Modal Styling */
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+
+.card-text {
+    font-size: 1rem;
+    color: #6c757d;
+
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+
 .modal-content {
     border-radius: 10px;
+    background-color: #f8f9fa;
 }
 
-/* Form Controls (Search and Filters) */
-#searchInput,
-.form-select,
-#dateFilter {
-    width: auto;
-    max-width: 250px;
+.modal-header {
+    background-color: #343a40;
+    color: white;
 }
 
-#searchInput {
-    width: 300px;
+.modal-body {
+    padding: 20px;
 }
 
-/* Mobile responsiveness */
+.modal-footer {
+    background-color: #f8f9fa;
+}
+
+
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #ffc107;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+.container {
+    padding: 20px;
+}
+
+#events-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem;
+}
+
+
 @media (max-width: 768px) {
-    .navbar .form-inline {
+    .navbar .navbar-nav {
         flex-direction: column;
+        margin-top: 10px;
     }
 
-    #searchInput,
-    .form-select,
-    #dateFilter {
+    #sortFilter,
+    #sportFilter {
         width: 100%;
-        margin: 5px 0;
+        margin-bottom: 10px;
     }
 
-    .title {
-        font-size: 3rem;
-        /* Adjust title size on smaller screens */
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+    }
+
+    .header-text p {
+        font-size: 1rem;
     }
 }

@@ -1,14 +1,16 @@
 <?php
 include('db.php');
 
-// Get event ID from the request
-$event_id = $_POST['event_id'];
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['event_id'])) {
+    $event_id = $_POST['event_id'];
 
-// SQL query to delete the event
-$sql = "DELETE FROM events WHERE event_id = $event_id";
+    $sql = "DELETE FROM events WHERE event_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $event_id);
 
-if ($conn->query($sql) === TRUE) {
-    echo json_encode(["status" => "success", "message" => "Event deleted successfully"]);
-} else {
-    echo json_encode(["status" => "error", "message" => "Error deleting event"]);
+    if ($stmt->execute()) {
+        echo "Event deleted successfully";
+    } else {
+        echo "Error: " . $stmt->error;
+    }
 }
