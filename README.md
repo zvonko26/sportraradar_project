@@ -26,6 +26,33 @@ Follow these steps to get a local copy up and running:
 1. Install a local server environment like **XAMPP** or **MAMP** to run PHP.
 2. Set up a **MySQL database** for storing event data (details below).
 
+CREATE DATABASE sports_calendar;
+
+USE sports_calendar;
+
+CREATE TABLE sports (
+    sport_id INT AUTO_INCREMENT PRIMARY KEY,
+    sport_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE venues (
+    venue_id INT AUTO_INCREMENT PRIMARY KEY,
+    venue_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE events (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_date DATE NOT NULL,
+    event_time TIME NOT NULL,
+    sport_id INT,
+    team_1 VARCHAR(255) NOT NULL,
+    team_2 VARCHAR(255) NOT NULL,
+    venue_id INT,
+    FOREIGN KEY (sport_id) REFERENCES sports(sport_id),
+    FOREIGN KEY (venue_id) REFERENCES venues(venue_id)
+);
+
+
 ### Installation
 
 1. Clone the repository:
